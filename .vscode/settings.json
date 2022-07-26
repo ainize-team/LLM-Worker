@@ -1,0 +1,14 @@
+{
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "python.formatting.provider": "black",
+    "python.sortImports.path": "isort",
+    "[python]": {
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": true,
+        "python.sortImports": true
+      }
+    }
+  }
+  

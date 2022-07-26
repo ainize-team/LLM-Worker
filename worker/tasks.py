@@ -1,5 +1,6 @@
 from typing import Dict, Union
 
+import torch
 from celery.signals import celeryd_init
 from loguru import logger
 
@@ -22,7 +23,9 @@ def load_model(**kwargs):
 @app.task(name="generate")
 def generate(self, data: Dict) -> Union[str, Dict]:
     inputs = {
-        "inputs": llm.tokenizer.encode(data["prompt"], return_tensors="pt").cuda(),
+        "inputs": llm.tokenizer.encode(data["prompt"], return_tensors="pt").cuda()
+        if torch.cuda.is_available()
+        else llm.tokenizer.encode(data["prompt"], return_tensors="pt"),
         "max_new_tokens": data["max_new_tokens"],
         "do_sample": data["do_sample"],
         "early_stopping": data["early_stopping"],

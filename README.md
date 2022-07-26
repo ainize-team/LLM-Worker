@@ -15,3 +15,9 @@ pip install -r requirements-dev.txt
 ```shell
 pre-commit install
 ```
+
+3. Running the Celery worker server(Not Docker)
+```shell
+cd worker
+celery -A worker worker -P solo -l info
+```

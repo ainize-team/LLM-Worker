@@ -3,3 +3,9 @@ flake8==4.0.1
 isort==5.10.1
 pre-commit==2.20.0
 pip-chill==1.0.1
+python-dotenv==0.20.0
+accelerate==0.10.0
+celery==5.2.6
+loguru==0.6.0
+pydantic==1.9.1
+transformers==4.20.1

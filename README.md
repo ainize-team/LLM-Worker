@@ -37,7 +37,7 @@ cd worker
 celery -A worker worker -P solo -l info
 ```
 
-#### Test Sample code
+#### Test Celery Worker
 ```python
 from celery.result import AsyncResult
 from celery_tasks.tasks import generate

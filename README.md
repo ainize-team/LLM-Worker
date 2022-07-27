@@ -40,7 +40,7 @@ celery -A worker worker -P solo -l info
 #### Test Celery Worker
 ```python
 from celery.result import AsyncResult
-from celery_tasks.tasks import generate
+from tasks import generate
 
 task = generate.delay({
     "prompt": "Hello", 
@@ -54,7 +54,7 @@ task = generate.delay({
     "no_repeat_ngram_size": 0, 
     "num_return_sequences": 1
 })
-# Check task status result
+# Check task status
 print(task.ready())
 # Get task result
 print(task.get())

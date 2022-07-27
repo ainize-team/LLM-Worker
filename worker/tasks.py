@@ -1,4 +1,4 @@
-from typing import Dict, Union
+from typing import Dict, List, Union
 
 import torch
 from celery.signals import celeryd_init
@@ -21,7 +21,7 @@ def load_model(**kwargs):
 
 
 @app.task(name="generate")
-def generate(self, data: Dict) -> Union[str, Dict]:
+def generate(self, data: Dict) -> Union[List[str], Dict]:
     inputs = {
         "inputs": llm.tokenizer.encode(data["prompt"], return_tensors="pt").cuda()
         if torch.cuda.is_available()

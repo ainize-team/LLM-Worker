@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from typing import Dict, List, Union
+from typing import Dict
 
 import pytz
 import torch
@@ -26,7 +26,7 @@ def load_model(**kwargs):
 
 
 @app.task(name="generate")
-def generate(task_id: str, data: Dict) -> Union[List[str], Dict]:
+def generate(task_id: str, data: Dict) -> None:
     now = datetime.utcnow().replace(tzinfo=pytz.utc).timestamp()
     response = TextGenerationResponse(status=ResponseStatusEnum.ASSIGNED, updated_at=now)
     redis.set(task_id, json.dumps(dict(response)))
@@ -74,4 +74,5 @@ def generate(task_id: str, data: Dict) -> Union[List[str], Dict]:
         now = datetime.utcnow().replace(tzinfo=pytz.utc).timestamp()
         response.updated_at = now
         response.status = ResponseStatusEnum.COMPLETED
+        logger.info(f"task_id: {task_id}, gen result: {response.result}")
         redis.set(task_id, json.dumps(dict(response)))

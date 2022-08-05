@@ -7,7 +7,7 @@ import torch
 from celery.signals import celeryd_init
 from loguru import logger
 
-from config import model_settings
+from configs.config import model_settings
 from enums import ResponseStatusEnum
 from ml_model import LargeLanguageModel
 from payloads.response import TextGenerationResponse

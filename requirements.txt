@@ -1,7 +1,8 @@
 --find-links https://download.pytorch.org/whl/torch_stable.html
 accelerate==0.10.0
-celery==5.2.6
+celery==5.2.7
 loguru==0.6.0
 pydantic==1.9.1
 transformers==4.20.1
+redis==4.3.4
 torch==1.12.0+cu113
